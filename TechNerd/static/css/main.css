@@ -1,0 +1,35 @@
+body.style {
+}
+
+div.container {
+    padding: 10px;
+}
+
+div.col-md-9 {
+    background-color: #B2C8DF;
+    border-radius: 8px;
+}
+
+h3.technerd {
+    display: block;
+    margin: 0 auto;
+
+    text-align: center;
+    color: #6E85B7;
+}
+
+nav {
+    background-color: #6E85B7;
+
+}
+
+div.card-header {
+    background-color: #B2C8DF;
+}
+div.card-body{
+    background-color: aliceblue;
+}
+h5{
+    padding-top: 15px;
+}
+
