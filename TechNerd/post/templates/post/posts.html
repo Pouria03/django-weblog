@@ -1,0 +1,16 @@
+{% extends 'bace.html' %}
+
+{% block content %}
+    <div class="m-2">
+        <h4>all posts</h4>
+        {% for post in posts %}
+        {% include 'includes/post_card.html' with value=post %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+<!-- side section -->
+
+{% block side %}
+    {% include 'includes/search.html' %}
+{% endblock %}

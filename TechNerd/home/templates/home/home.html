@@ -7,11 +7,16 @@
     {% for post in posts %}
         {% include 'includes/post_card.html' with value=post %}
     {% endfor %}
-    <a href="#" class="btn btn-xs btn-outline-dark m-2" style="float:right;"> see all posts </a>
+    <a href="{% url 'post:posts' %}" class="btn btn-xs btn-outline-dark m-2" style="float:right;"> see all posts </a>
 {% endblock content %}
 
 <!-- ths is side bar -->
 {% block side %}
+
+<div class="form-control ">
+    {% include 'includes/search.html' %}
+</div>
+
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>

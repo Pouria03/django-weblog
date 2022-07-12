@@ -1,0 +1,30 @@
+{% extends 'bace.html' %}
+
+{% block content %}
+<div class="card m-3 p-3">
+    <small class="text-muted">{{post.created_date}}</small>
+    <h2 style="display: inline">{{post.title}} </h2>
+    <h5 class="">{{post.description}}</h5>
+    {% if post.image %}
+    <center><img src="{{ post.image.url }}"></center>
+    {% endif %}
+    <div class="">
+        <p class="">{{post.body}}</p>
+    </div>
+    <span class="card p-2" style="display: inline">
+        <h6>keywords :</h6>
+        {% for tag in tags %}
+            <a style="display: inline" class="btn btn-xs btn-outline-dark">{{tag}}</a>
+        {% endfor %}
+    </span>
+</div>
+{% endblock %}
+
+<!--side section-->
+
+{% block side%}
+<div class="card p-2">
+    <h5>did you like this post?</h5>
+    <a class="btn btn-outline-danger">Like (0)</a>
+</div>
+{% endblock side%}

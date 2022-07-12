@@ -18,6 +18,10 @@ class Post(models.Model):
     image = models.ImageField(default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     tags = models.CharField(max_length=100)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        ordering = ['-created_date']
 
     def __str__(self):
         return self.slug
