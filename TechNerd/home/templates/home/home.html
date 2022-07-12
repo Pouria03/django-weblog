@@ -4,11 +4,10 @@
 <!-- this is content section -->
 {% block content %}
     <h5>home</h5>
-    {% include 'includes/post_card.html' %}
-    {% include 'includes/post_card.html' %}
-    {% include 'includes/post_card.html' %}
-    {% include 'includes/post_card.html' %}
-    {% include 'includes/post_card.html' %}
+    {% for post in posts %}
+        {% include 'includes/post_card.html' with value=post %}
+    {% endfor %}
+    <a href="#" class="btn btn-xs btn-outline-dark m-2" style="float:right;"> see all posts </a>
 {% endblock content %}
 
 <!-- ths is side bar -->

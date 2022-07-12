@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 # Create your models here.
 class Category(models.Model):
@@ -6,11 +7,25 @@ class Category(models.Model):
     slug = models.SlugField()
     description = models.CharField(max_length=400)
 
+    def __str__(self):
+        return self.slug
+
 class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()
     description = models.CharField(max_length=400)
     body = models.TextField()
-    image = models.ImageField(blank=True,null=True)
+    image = models.ImageField(default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     tags = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.slug
+
+    def save(self):
+        super().save()
+        if self.image:
+            img = Image.open(self.image.path)
+            img.thumbnail((200,200))
+            img.save(self.image.path)
+

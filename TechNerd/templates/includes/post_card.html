@@ -1,9 +1,14 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <a class="btn btn-primary" href="#">Go somewhere</a>
+        {% if value.image %}
+                <img src="{{ value.image.url }}" style="float: right;" >
+        {% endif %}
+        <h5 class="card-title">{{value.title}}</h5>
+        <p class="card-text">
+            {{value.description}}
+        </p>
+
+        <a class="btn btn-primary" href="#">read more</a>
     </div>
 </div><br>
 
