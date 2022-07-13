@@ -14,7 +14,7 @@
     <span class="card p-2" style="display: inline">
         <h6>keywords :</h6>
         {% for tag in tags %}
-            <a style="display: inline" class="btn btn-xs btn-outline-dark">{{tag}}</a>
+            <a href="{% url 'post:by_keyword' tag %}" style="display: inline" class="btn btn-xs btn-outline-dark">{{tag}}</a>
         {% endfor %}
     </span>
 </div>

@@ -1,5 +1,6 @@
-{% load static %}
-<form class="d-flex">
-    <input aria-label="Search" class="form-control me-2" placeholder="Search" type="search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+{% load crispy_forms_tags %}
+<h4 class="">search here : </h4>
+<form class="d-flex" method="get" novalidate>
+        {{form|crispy}}
+    <input class="btn btn-sm btn-outline-dark" type="submit" value="search">
 </form>
