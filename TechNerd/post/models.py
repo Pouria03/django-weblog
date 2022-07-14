@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 # Create your models here.
+from django.contrib.auth.models import User
 class Category(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()
@@ -33,3 +34,9 @@ class Post(models.Model):
             img.thumbnail((200,200))
             img.save(self.image.path)
 
+
+# model votes
+
+class PostVote(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='votes')
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='votes')
