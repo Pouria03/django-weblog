@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="m-2">
-        <h4>all posts</h4>
+        <h4>{{title}}</h4>
         {% for post in posts %}
         {% include 'includes/post_card.html' with value=post %}
         {% endfor %}

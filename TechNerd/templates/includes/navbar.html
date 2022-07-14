@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark ">
     <div class="container-fluid">
         <a class="navbar-brand text-dark" href="#">TechNerd</a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,8 +18,9 @@
                         categories
                     </a>
                     <ul aria-labelledby="navbarDropdown" class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                        {% for category in categories %}
+                        <li><a class="dropdown-item" href="{% url 'post:by_category' category.slug %}">{{ category.title }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
 

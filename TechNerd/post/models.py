@@ -1,7 +1,8 @@
 from django.db import models
 from PIL import Image
-# Create your models here.
 from django.contrib.auth.models import User
+
+
 class Category(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()

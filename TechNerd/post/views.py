@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views import View
 from .forms import SearchForm
-from .models import Post, PostVote
+from .models import Post, PostVote,Category
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -14,7 +14,8 @@ class PostListView(View):
         if request.GET.get('search'):
             posts = posts.filter(title__contains=request.GET['search']) or\
                     posts.filter(body__contains=request.GET['search'])
-        return render(request, self.template_name, {'posts': posts,'search_form':self.form_class})
+        title = 'all posts'
+        return render(request, self.template_name, {'posts': posts,'search_form':self.form_class,'title':title})
 
 
 class PostDetailView(View):
@@ -28,7 +29,7 @@ class PostDetailView(View):
 
 #   show posts sorted by same keyword:
 class PostsByKeywordView(View):
-    template_name = 'post/search_by_keywords.html'
+    template_name = 'post/posts.html'
 
     def get(self, request, tag):
         posts = Post.objects.filter(tags__contains=tag)
@@ -48,3 +49,10 @@ class PostVoteView(View):
         elif vote.exists() == False:
             PostVote.objects.create(user= user,post= post).save()
             return redirect('post:detail',post.slug)
+
+# show posts by category
+class PostsByCategoryView(View):
+    def get(self,request,slug):
+        category = get_object_or_404(Category, slug=slug)
+        posts = Post.objects.filter(category=category)
+        return render(request,'post/posts.html',{'posts':posts,'title':slug})

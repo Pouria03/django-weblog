@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from post.models import Post
+from post.models import Post,Category
 # Create your views here.
 
 class HomeView(View):
