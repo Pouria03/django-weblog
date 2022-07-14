@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.views import View
 from .forms import SearchForm
-from .models import Post
-
+from .models import Post, PostVote
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -34,3 +34,17 @@ class PostsByKeywordView(View):
         posts = Post.objects.filter(tags__contains=tag)
         title = f'posts related to {tag}'
         return render(request, self.template_name, {'posts': posts, 'title': title})
+
+
+# processing the votes of post
+class PostVoteView(View):
+    def get(self,request,post_id):
+        user= request.user
+        post = Post.objects.get(id=post_id)
+        vote = PostVote.objects.filter(user= user,post= post)
+        if vote.exists():
+            vote.delete()
+            return redirect('post:detail',post.slug)
+        elif vote.exists() == False:
+            PostVote.objects.create(user= user,post= post).save()
+            return redirect('post:detail',post.slug)

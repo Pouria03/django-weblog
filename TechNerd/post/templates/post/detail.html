@@ -25,6 +25,6 @@
 {% block side%}
 <div class="card p-2">
     <h5>did you like this post?</h5>
-    <a class="btn btn-outline-danger">Like (0)</a>
+    <a href="{% url 'post:vote' post.id %}" class="btn btn-outline-danger">Like ({{post.vote_count}})</a>
 </div>
 {% endblock side%}
