@@ -1,6 +1,5 @@
 from django.db import models
 from PIL import Image
-
 # Create your models here.
 class Category(models.Model):
     title = models.CharField(max_length=250)
@@ -19,6 +18,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     tags = models.CharField(max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     class Meta():
         ordering = ['-created_date']
