@@ -1,8 +1,8 @@
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
-
-
+# ==========================================================================================================
+# this is Category Table :
 class Category(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()
@@ -10,7 +10,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.slug
+# End =====================================================================================================
 
+# this is Post Table :
 class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()
@@ -37,13 +39,21 @@ class Post(models.Model):
             img = Image.open(self.image.path)
             img.thumbnail((200,200))
             img.save(self.image.path)
+# End =======================================================================================================
 
-
-# model votes
-
+# this is for Votes :
 class PostVote(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='votes')
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='votes')
 
     def __str__(self):
         return f'{self.user} liked {self.post}'
+# End =======================================================================================================
+
+# this is comment table :
+class Comment(models.Model):
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name='comments')
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
+    body = models.CharField(max_length=500)
+
+# End =======================================================================================================
