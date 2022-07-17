@@ -1,23 +1,39 @@
 {% extends 'bace.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+
+<!-- post main body -->
 <div class="card m-3 p-3">
-    <small class="text-muted">{{post.created_date}}</small>
-    <h2 style="display: inline">{{post.title}} </h2>
-    <h5 class="">{{post.description}}</h5>
-    {% if post.image %}
-    <center><img src="{{ post.image.url }}"></center>
-    {% endif %}
-    <div class="">
+    <div class="card p-2">
+        <small class="text-muted">{{post.created_date|timesince}} ago </small>
+        <h2 style="display: inline">{{post.title}} </h2>
+        <h5 class="">{{post.description}}</h5>
+        {% if post.image %}
+        <center><img src="{{ post.image.url }}"></center>
+        {% endif %}
+
         <p class="">{{post.body}}</p>
     </div>
-    <span class="card p-2" style="display: inline">
+    <br>
+    <!--   tags and keywords  -->
+    <span class="card p-2 bg-light" style="display: inline">
         <h6>keywords :</h6>
         {% for tag in tags %}
-            <a href="{% url 'post:by_keyword' tag %}" style="display: inline" class="btn btn-xs btn-outline-dark">{{tag}}</a>
+            <a class="btn btn-xs btn-outline-dark" href="{% url 'post:by_keyword' tag %}" style="display: inline">{{tag}}</a>
         {% endfor %}
     </span>
+    <br>
+    <!--   list of comments :  -->
+    <div class="bg-light">
+        {% for comment in comments%}
+        <div class="card-body m-2">
+            <strong>{{comment.user.username}}</strong><span> - {{comment.comment_date|timesince}}</span>
+            <div>{{comment.body}}</div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
 {% endblock %}
 
 <!--side section-->
@@ -25,6 +41,15 @@
 {% block side%}
 <div class="card p-2">
     <h5>did you like this post?</h5>
-    <a href="{% url 'post:vote' post.id %}" class="btn btn-outline-danger">Like ({{post.vote_count}})</a>
+    <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">Like ({{post.vote_count}})</a>
+</div><br>
+<!--    comment form :   -->
+<div class=" bg-light">
+    <h5> share your comment </h5>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{comment_form|crispy}}
+        <button class="btn btn-primary" style="width: 100%">post</button>
+    </form>
 </div>
 {% endblock side%}
