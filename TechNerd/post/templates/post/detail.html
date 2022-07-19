@@ -3,32 +3,34 @@
 {% block content %}
 
 <!-- post main body -->
-<div class="card m-3 p-3">
-    <div class="card p-2">
-        <small class="text-muted">{{post.created_date|timesince}} ago </small>
+<div class="m-3 p-3">
+    <div class="p-2">
         <h2 style="display: inline">{{post.title}} </h2>
-        <h5 class="">{{post.description}}</h5>
+        <small class="text-muted">{{post.created_date|timesince}} ago </small>
+        <div class="">{{post.description}}</div>
         {% if post.image %}
         <center><img src="{{ post.image.url }}"></center>
         {% endif %}
 
         <p class="">{{post.body}}</p>
     </div>
-    <br>
+    <hr>
     <!--   tags and keywords  -->
-    <span class="card p-2 bg-light" style="display: inline">
+    <span class=" p-2 bg-light" style="display: inline">
         <h6>keywords :</h6>
         {% for tag in tags %}
             <a class="btn btn-xs btn-outline-dark" href="{% url 'post:by_keyword' tag %}" style="display: inline">{{tag}}</a>
         {% endfor %}
     </span>
-    <br>
+    <hr>
     <!--   list of comments :  -->
+    <strong>comments :</strong>
     <div class="bg-light">
         {% for comment in comments%}
-        <div class="card-body m-2">
+        <div class=" m-2">
             <strong>{{comment.user.username}}</strong><span> - {{comment.comment_date|timesince}}</span>
             <div>{{comment.body}}</div>
+            <br>
         </div>
         {% endfor %}
     </div>
@@ -39,7 +41,7 @@
 <!--side section-->
 
 {% block side%}
-<div class="card p-2">
+<div class="p-2">
     <h5>did you like this post?</h5>
     <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">Like ({{post.vote_count}})</a>
 </div><br>

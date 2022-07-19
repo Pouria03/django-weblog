@@ -4,11 +4,11 @@
         <img src="{{ value.image.url }}" style="float: right;">
         {% endif %}
         <small class="text-muted">{{value.created_date}}</small>
-        <h5 class="card-title">{{value.title}}</h5>
+        <a href="{% url 'post:detail' post.slug %}"><h5 class="card-title">{{value.title}}</h5></a>
         <p class="card-text">
             {{value.description}}
         </p>
-        <a class="btn btn-primary" href="{% url 'post:detail' post.slug %}">read more</a>
+<!--        <a class="btn btn-primary" href="{% url 'post:detail' post.slug %}">read more</a>-->
         <small>❤:{{value.vote_count}}</small>
 
     </div>

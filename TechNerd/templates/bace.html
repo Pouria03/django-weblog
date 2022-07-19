@@ -3,41 +3,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content=" TechNerd is all about computers and codes ">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content=" TechNerd is all about computers and codes " name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<!--  links  -->
+    <!--  links  -->
     <!-- CSS only -->
-    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          rel="stylesheet">
     <title>TechNerd</title>
 </head>
 <body class="style">
-    {% include "includes/navbar.html" %}
-    <div class="container">
-        <h3 class="technerd">TechNerd</h3>
-        <div class="row">
-            <div class="col-md-9">
-                {% block content %}
-                {% endblock content %}
-            </div>
+<!-- navbar -->
+{% include "includes/navbar.html" %}
+<!-- End navbar-->
 
+<div class="container">
 
-            <div class="col-3">
-                <div class="side">
-                    {% block side %}
+    <h3 class="technerd">TechNerd</h3>
+    <div class="row">
+        <!-- main side of website -->
+        <div class="col-md-9">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <!-- End main side of website -->
+        <!-- right side of website -->
+        <div class="col-md-3">
+            <br><br>
+            <div class="side">
+                {% block side %}
 
-                    {% endblock side %}
-                </div>
+                {% endblock side %}
             </div>
         </div>
+        <!-- End right side of website -->
+
+
     </div>
+
+</div>
+<!-- footer -->
+{% include 'includes/footer.html' %}
+<!-- End footer -->
+
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+<script crossorigin="anonymous"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- End JavaScript Bundle with Popper -->
+
 </body>
 </html>

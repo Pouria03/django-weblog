@@ -1,15 +1,19 @@
 body.style {
+    background-color: #F5F5F5;
 }
 
+/* main part of the template  */
 div.container {
+    background-color: #FFFFFF;
     padding: 10px;
 }
 
+/* where the posts are sorted */
 div.col-md-9 {
-    background-color: #6E85B7;
     border-radius: 8px;
 }
 
+/* technerd logo above the website */
 h3.technerd {
     display: block;
     margin: 0 auto;
@@ -17,6 +21,7 @@ h3.technerd {
     color: #6E85B7;
 }
 
+/* navbar of website */
 nav {
     background-color: #6E85B7;
 
@@ -26,9 +31,18 @@ div.card-header {
     background-color: #B2C8DF;
 }
 div.card-body{
-    background-color: aliceblue;
+    background-color: #F1FAFE;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #6E85B7;
 }
 h5{
     padding-top: 15px;
+}
+
+div.footer{
+    background-color: #6E85B7;
+    text-align: center;
+    color: white;
 }
 
