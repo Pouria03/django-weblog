@@ -1,18 +1,44 @@
 {% extends 'bace.html' %}
 {% block title %}
-    - posts
+- posts
 {% endblock title %}
+
 {% block content %}
-    <div class="m-2">
-        <h4>{{title}}</h4>
-        {% for post in posts %}
-        {% include 'includes/post_card.html' with value=post %}
-        {% endfor %}
-    </div>
+
+<div class="m-2">
+    <h4>{{title}}</h4>
+    {% for post in posts %}
+    {% include 'includes/post_card.html' with value=post %}
+    {% endfor %}
+</div>
+
+<!--pagination-->
+<div >
+    <ul class="pagination">
+        {% if posts.has_previous %}
+            <li class="page-item"><a href="?page=1" class="page-link" >&laquo; first</a></li>
+            <li class="page-item"><a href="?page={{ posts.previous_page_number }}" class="page-link">
+                {{ posts.previous_page_number }}
+            </a></li>
+        {% endif %}
+
+        <span class="current">
+            <li class="page-item "><a class="page-link bg-primary text-white">{{ posts.number }}</a></li>
+        </span>
+
+        {% if posts.has_next %}
+            <li class="page-item"><a href="?page={{ posts.next_page_number }}" class="page-link" >{{ posts.next_page_number }}</a></li>
+            <li class="page-item"><a href="?page={{ posts.paginator.num_pages }}" class="page-link">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+<!--End pagination-->
+
 {% endblock %}
+
 
 <!-- side section -->
 
 {% block side %}
-    {% include 'includes/search.html' with form=search_form %}
+{% include 'includes/search.html' with form=search_form %}
 {% endblock %}

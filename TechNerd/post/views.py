@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
@@ -16,8 +17,13 @@ class PostListView(View):
         if request.GET.get('search'):
             posts = posts.filter(title__contains=request.GET['search']) or \
                     posts.filter(body__contains=request.GET['search'])
-        title = 'all posts'
-        return render(request, self.template_name, {'posts': posts, 'search_form': self.form_class, 'title': title})
+        # pagination
+        paginator = Paginator(posts, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        # End # pagination
+        return render(request, self.template_name,
+                      {'posts': page_obj, 'search_form': self.form_class, 'title': 'all posts','page_number':page_number})
 
 
 # show details of the post:
@@ -82,7 +88,8 @@ class PostsByCategoryView(View):
 # show user favorite posts :
 class PostFavoriteView(View):
     title = 'posts you liked!'
-    def get(self,request):
+
+    def get(self, request):
         favorites = PostVote.objects.filter(user=request.user)
         favorites = favorites.only('post')
-        return render(request,'post/fav_posts.html',{'favorites': favorites, 'title': self.title})
+        return render(request, 'post/fav_posts.html', {'favorites': favorites, 'title': self.title})
