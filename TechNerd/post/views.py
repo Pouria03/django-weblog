@@ -1,10 +1,11 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SearchForm, CommentForm
 from .models import Post, PostVote, Category, Comment
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -42,7 +43,7 @@ class PostDetailView(View):
         form = self.comment_Form()
         return render(request, self.template_name,
                       {'post': self.post_instance, 'tags': self.tags, 'comments': self.comments, 'comment_form': form})
-
+    @method_decorator(login_required())
     def post(self, request, *args, **kwargs):
         form = self.comment_Form(request.POST)
         if form.is_valid():
@@ -63,8 +64,8 @@ class PostsByKeywordView(View):
         return render(request, self.template_name, {'posts': posts, 'title': title})
 
 
-# processing the votes of post
-class PostVoteView(View):
+# processing the votes of post - users can vote
+class PostVoteView(LoginRequiredMixin,View):
     def get(self, request, post_id):
         user = request.user
         post = Post.objects.get(id=post_id)
@@ -85,8 +86,8 @@ class PostsByCategoryView(View):
         return render(request, 'post/posts.html', {'posts': posts, 'title': slug})
 
 
-# show user favorite posts :
-class PostFavoriteView(View):
+# show user favorite posts - users can see what they liked :
+class PostFavoriteView(LoginRequiredMixin,View):
     title = 'posts you liked!'
 
     def get(self, request):

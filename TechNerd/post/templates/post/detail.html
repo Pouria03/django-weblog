@@ -45,6 +45,8 @@
 <!--side section-->
 
 {% block side%}
+
+{% if request.user.is_authenticated%}
 <div class="p-2">
     <h5>did you like this post?</h5>
     <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">Like ({{post.vote_count}})</a>
@@ -58,4 +60,11 @@
         <button class="btn btn-primary" style="width: 100%">post</button>
     </form>
 </div>
+{% else %}
+<div class="bg-warning p-1">
+    if you want to share your comment
+    or like this post and add it to your
+    favorite posts you must log in !
+</div>
+{% endif %}
 {% endblock side%}
