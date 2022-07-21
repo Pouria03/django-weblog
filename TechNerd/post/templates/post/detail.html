@@ -16,7 +16,7 @@
         <center><img src="{{ post.image.url }}"></center>
         {% endif %}
 
-        <p class="">{{post.body}}</p>
+        <p class="">{{post.body|safe}}</p>
     </div>
     <hr>
     <!--   tags and keywords  -->

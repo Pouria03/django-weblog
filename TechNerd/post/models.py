@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
 # ==========================================================================================================
 # this is Category Table :
 class Category(models.Model):
@@ -17,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField()
     description = models.CharField(max_length=400)
-    body = models.TextField()
+    body = RichTextUploadingField()
     image = models.ImageField(default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     tags = models.CharField(max_length=100)
