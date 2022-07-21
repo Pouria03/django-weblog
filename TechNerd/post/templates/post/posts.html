@@ -40,5 +40,7 @@
 <!-- side section -->
 
 {% block side %}
-{% include 'includes/search.html' with form=search_form %}
+    {% if title == 'all posts'%}
+        {% include 'includes/search.html' with form=search_form %}
+    {% endif %}
 {% endblock %}

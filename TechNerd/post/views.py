@@ -24,7 +24,8 @@ class PostListView(View):
         page_obj = paginator.get_page(page_number)
         # End # pagination
         return render(request, self.template_name,
-                      {'posts': page_obj, 'search_form': self.form_class, 'title': 'all posts','page_number':page_number})
+                      {'posts': page_obj, 'search_form': self.form_class,
+                       'title': 'all posts','page_number':page_number})
 
 
 # show details of the post:
@@ -42,12 +43,14 @@ class PostDetailView(View):
     def get(self, request, *args, **kwargs):
         form = self.comment_Form()
         return render(request, self.template_name,
-                      {'post': self.post_instance, 'tags': self.tags, 'comments': self.comments, 'comment_form': form})
+                      {'post': self.post_instance, 'tags': self.tags, 'comments': self.comments,
+                       'comment_form': form})
     @method_decorator(login_required())
     def post(self, request, *args, **kwargs):
         form = self.comment_Form(request.POST)
         if form.is_valid():
-            comment = Comment.objects.create(user=request.user, post=self.post_instance, body=form.cleaned_data['body'])
+            comment = Comment.objects.create(user=request.user, post=self.post_instance,
+                                             body=form.cleaned_data['body'])
             slug = self.post_instance.slug
         return render(request, self.template_name,
                       {'post': self.post_instance, 'tags': self.tags, 'comments': self.comments,
@@ -61,7 +64,13 @@ class PostsByKeywordView(View):
     def get(self, request, tag):
         posts = Post.objects.filter(tags__contains=tag)
         title = f'posts related to {tag}'
-        return render(request, self.template_name, {'posts': posts, 'title': title})
+        # pagination
+        paginator = Paginator(posts, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        # End # pagination
+        return render(request, self.template_name, {'posts': page_obj, 'title': title,
+                                                    'page_number':page_number})
 
 
 # processing the votes of post - users can vote
@@ -83,7 +92,12 @@ class PostsByCategoryView(View):
     def get(self, request, slug):
         category = get_object_or_404(Category, slug=slug)
         posts = Post.objects.filter(category=category)
-        return render(request, 'post/posts.html', {'posts': posts, 'title': slug})
+        # pagination
+        paginator = Paginator(posts, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        # End # pagination
+        return render(request, 'post/posts.html', {'posts': page_obj,'page_number':page_number, 'title': slug})
 
 
 # show user favorite posts - users can see what they liked :
