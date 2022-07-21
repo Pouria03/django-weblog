@@ -1,0 +1,17 @@
+{% extends 'bace.html' %}
+{% load crispy_forms_tags %}
+<!--title section-->
+{% block title %}
+    -login
+{% endblock %}
+<!--end-->
+<!--main content-->
+{% block content %}
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form|crispy}}
+        <br>
+        <input type="submit" value="login" class="btn btn-success">
+    </form>
+{% endblock %}
+<!--end-->

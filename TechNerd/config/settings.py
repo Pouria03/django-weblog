@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'post.apps.PostConfig',
-    'accounts.apps.AccountsConfig',
     'django_cleanup.apps.CleanupConfig',
+    'account.apps.AccountConfig',
     'crispy_forms',
 ]
 
@@ -55,6 +55,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'post.appcontext_processor.categories',
+
             ],
         },
     },
