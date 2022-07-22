@@ -1,4 +1,4 @@
-{% extends 'bace.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}
     -{{post.title}}
@@ -23,7 +23,9 @@
     <span class=" p-2 bg-light" style="display: inline">
         <h6>keywords :</h6>
         {% for tag in tags %}
-            <a class="btn btn-xs btn-outline-dark" href="{% url 'post:by_keyword' tag %}" style="display: inline">{{tag}}</a>
+            <a class="btn btn-xs btn-outline-dark" href="{% url 'post:by_keyword' tag %}" style="display: inline">
+                {{tag}}
+            </a>
         {% endfor %}
     </span>
     <hr>
@@ -32,7 +34,8 @@
     <div class="bg-light">
         {% for comment in comments%}
         <div class=" m-2">
-            <strong>{{comment.user.username}}</strong><span> - {{comment.comment_date|timesince}}</span>
+            <strong>{{comment.user.username}}</strong>
+            <span> - {{comment.comment_date|timesince}}</span>
             <div>{{comment.body}}</div>
             <br>
         </div>
@@ -49,7 +52,9 @@
 {% if request.user.is_authenticated%}
 <div class="p-2">
     <h5>did you like this post?</h5>
-    <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">Like ({{post.vote_count}})</a>
+    <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">
+        Like ({{post.vote_count}})
+    </a>
 </div><br>
 <!--    comment form :   -->
 <div class=" bg-light">

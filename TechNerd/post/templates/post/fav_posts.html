@@ -1,4 +1,4 @@
-{% extends 'bace.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
     -favorites
@@ -14,7 +14,9 @@
             <img src="{{ fav.post.image.url }}" style="float: right;">
             {% endif %}
             <small class="text-muted">{{fav.post.created_date}}</small>
-            <a href="{% url 'post:detail' fav.post.slug %}"><h5 class="card-title">{{fav.post.title}}</h5></a>
+            <a href="{% url 'post:detail' fav.post.slug %}">
+                <h5 class="card-title">{{fav.post.title}}</h5>
+            </a>
             <p class="card-text">
                 {{fav.post.description}}
             </p>
