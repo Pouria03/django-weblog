@@ -1,7 +1,21 @@
 from django.contrib import admin
 from . import models
-# Register your models here.
-admin.site.register(models.Category)
-admin.site.register(models.Post)
+
+# modify admin panel
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title','slug')
+    search_fields = ('title','slug')
+    prepopulated_fields = {'slug': ('title',)}
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title','slug','tags','created_date','category')
+    search_fields = ('title','slug','body')
+    prepopulated_fields = {'slug': ('title',)}
+
+
+# register models
+admin.site.register(models.Category,CategoryAdmin)
+admin.site.register(models.Post,PostAdmin)
 admin.site.register(models.PostVote)
 admin.site.register(models.Comment)
+
