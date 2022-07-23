@@ -3,3 +3,5 @@ venv
 notes.txt
 media
 *.pyc
+__pycache__/
+.idea/

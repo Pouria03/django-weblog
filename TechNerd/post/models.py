@@ -21,7 +21,8 @@ class Post(models.Model):
     body = RichTextUploadingField()
     image = models.ImageField(default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
-    tags = models.CharField(max_length=100)
+    # tags should divide by comma ','
+    tags = models.CharField(max_length=100,verbose_name='tags (tags should divide by comma)')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
