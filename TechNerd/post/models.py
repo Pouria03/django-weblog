@@ -19,10 +19,10 @@ class Post(models.Model):
     slug = models.SlugField()
     description = models.CharField(max_length=400)
     body = RichTextUploadingField()
-    image = models.ImageField(default=None,blank=True)
+    image = models.ImageField(upload_to='products/%Y/%m/%d/',default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     # tags should divide by comma ','
-    tags = models.CharField(max_length=100,verbose_name='tags (tags should divide by comma)')
+    tags = models.CharField(max_length=100,verbose_name='tags (tags must divide by comma)')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
@@ -35,12 +35,7 @@ class Post(models.Model):
     def __str__(self):
         return self.slug
 
-    def save(self):
-        super().save()
-        if self.image:
-            img = Image.open(self.image.path)
-            img.thumbnail((200,200))
-            img.save(self.image.path)
+            
 # End =======================================================================================================
 
 # this is for Votes :

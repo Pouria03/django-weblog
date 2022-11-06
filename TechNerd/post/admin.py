@@ -11,6 +11,9 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title','slug','tags','created_date','category')
     search_fields = ('title','slug','body')
     prepopulated_fields = {'slug': ('title',)}
+    ordering = ('id',)
+    sortable_by = ('created_date','id')
+
 
 
 # register models

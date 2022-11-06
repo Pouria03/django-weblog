@@ -5,7 +5,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-#sfql%at&5!@5#s5*&21h6ss_5nw^kg&$vv29$$y_&5hv3aj_c'
@@ -24,13 +23,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # local
     'home.apps.HomeConfig',
     'post.apps.PostConfig',
-    'django_cleanup.apps.CleanupConfig',
     'account.apps.AccountConfig',
+    # third-party :
+    'django_cleanup.apps.CleanupConfig',
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'storages',
+    'boto3',
+    
 ]
 
 MIDDLEWARE = [
@@ -66,7 +70,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -76,7 +79,6 @@ DATABASES = {
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -94,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -105,19 +106,16 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = '/login/'
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -128,3 +126,12 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+
+# storage :
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = '9d0d0a56-c95c-4391-a85c-4286a25df38e'
+AWS_SECRET_ACCESS_KEY ='c87a1273a69f510ea72d747a661b6f8736f2255b4fccebd1a26c0a6040d8dcbe'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.com'
+AWS_STORAGE_BUCKET_NAME = 'technerd'
+AWS_SERVICE_NAME = 's3' #optional
+AWS_S3_FILE_OVERWRITE = False #don't over write files wiht same name
