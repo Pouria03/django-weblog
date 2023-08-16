@@ -1,16 +1,17 @@
 <div class="card">
     <div class="card-body">
         {% if value.image %}
-        <img src="{{ value.image.url }}" style="float: right;">
+        <img class="rounded" src="{{ value.image.url }}" style="float: left;">
         {% endif %}
-        <small class="text-muted">{{value.created_date}}</small>
-        <a href="{% url 'post:detail' post.slug %}"><h5 class="card-title">{{value.title}}</h5></a>
-        <p class="card-text text-muted">
-            {{value.description}}
-        </p>
-<!--        <a class="btn btn-primary" href="{% url 'post:detail' post.slug %}">read more</a>-->
-        <small>❤:{{value.vote_count}}</small>
-
+        <div class="card-text">
+            <small class="text-muted">{{value.created_date}}</small>
+            <a href="{% url 'post:detail' post.slug %}"><h5 class="card-title">{{value.title}}</h5></a>
+            <p class="card-text text-muted">
+                {{value.description}}
+            </p>
+            <!-- <a class="btn btn-primary" href="{% url 'post:detail' post.slug %}">read more</a>-->
+            <small> &heartsuit; :{{value.vote_count}}</small>
+        </div>
     </div>
 </div><br>
 

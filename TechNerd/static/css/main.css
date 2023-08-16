@@ -1,11 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@200;300;400;500;700&display=swap');
-*{
-    font-family: 'Poppins',sans-serif;
+/* ================= start  fonts =========================== */
+  @font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 300;
+    src: url("/static/fonts/Vazir-Light.eot");
+    src: url("/static/fonts/Vazir-Light.woff") format("woff"),
+      url("/static/fonts/Vazir-Light.ttf") format("ttf"),
+      url("/statiic/fonts/Vazir-Light.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 400;
+    src: url("/static/fonts/Vazir.eot");
+    src: url("/static/fonts/Vazir.woff") format("woff"),
+      url("/static/fonts/Vazir.ttf") format("ttf"),
+      url("/static/fonts/Vazir.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 950;
+    src: url("/static/fonts/Vazir-Bold.eot");
+    src: url("/static/fonts/Vazir-Bold.woff") format("woff"),
+      url("/static/fonts/Vazir-Bold.ttf") format("ttf"),
+      url("/static/fonts/Vazir-Bold.woff2") format("woff2");
+  }
+
+/* ================= end  fonts =========================== */
+
+body {
+    font-family: 'vazir', Arial;
+    direction: rtl;
 }
 
-body.style{
-    background-color: #F5F5F5;
-}
 
 /* main part of the template  */
 div.container {

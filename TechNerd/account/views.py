@@ -11,7 +11,7 @@ from .forms import *
 class UserRegisterView(View):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            messages.success(request,'you are logged in', 'success')
+            messages.success(request,'شما وارد شدید', 'success')
             return redirect('home:home')
         return super().dispatch(request, *args, **kwargs)
 
@@ -23,7 +23,7 @@ class UserRegisterView(View):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'your account created successfully . login please', 'success')
+            messages.success(request, 'حساب شما ایجاد شد', 'success')
             return redirect('login')
         return render(request, 'account/register.html', {'form': form})
 
@@ -34,7 +34,7 @@ class UserLoginView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            messages.success(request,'you are logged in', 'success')
+            messages.success(request,'شما وارد شدید', 'success')
             return redirect('home:home')
         return super().dispatch(request, *args, **kwargs)
 
@@ -49,10 +49,10 @@ class UserLoginView(View):
                                 , password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                messages.success(request, 'you are logged in now! enjoy', 'success')
+                messages.success(request, 'شما واردشدید', 'success')
                 return redirect('post:posts')
             else:
-                messages.warning(request, 'invalid information', 'warning')
+                messages.warning(request, 'ورودی نامعتبر', 'warning')
         return render(request, 'account/login.html', {'form': form})
 
 
@@ -60,5 +60,5 @@ class UserLoginView(View):
 class UserLogOutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        messages.success(request, 'you have logged out', 'success')
+        messages.success(request, 'شما از حسابتون خارج شدید', 'success')
         return redirect('home:home')

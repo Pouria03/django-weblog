@@ -10,19 +10,19 @@
 <div class="m-3 p-3" style="min-height: 100vh;">
     <div class="p-2">
         <h2 style="display: inline">{{post.title}} </h2>
-        <small class="text-muted">{{post.created_date|timesince}} ago </small>
+        <small class="text-muted">پیش {{post.created_date|timesince}}</small>
         <div class="">{{post.description}}</div>
         {% if post.image %}
-        <center><img src="{{ post.image.url }}"></center>
+        <div class="text-center "><img class="rounded" src="{{ post.image.url }}"></div>
         {% endif %}
 
-        <p class="">{{post.body|safe}}</p>
+        <p class="pt-4">{{post.body|safe}}</p>
     </div>
 </div>
     <hr>
     <!--   tags and keywords  -->
     <span class=" p-2 bg-light" style="display: inline">
-        <h6>keywords :</h6>
+        <h6>کلیدواژه ها :</h6>
         {% for tag in tags %}
             <a class="btn btn-xs btn-outline-dark" href="{% url 'post:by_keyword' tag %}" style="display: inline">
                 {{tag}}
@@ -31,7 +31,7 @@
     </span>
     <hr>
     <!--   list of comments :  -->
-    <strong>comments :</strong>
+    <strong>دیدگاه ها :</strong>
     <div class="bg-light">
         {% for comment in comments%}
         <div class=" m-2">
@@ -51,27 +51,25 @@
 
 {% if request.user.is_authenticated%}
 <div class="p-2">
-    <h5>did you like this post?</h5>
+    <h5>از این پست لذت بردی ؟</h5>
     <a class="btn btn-outline-danger" href="{% url 'post:vote' post.id %}">
-        Like ({{post.vote_count}})
+        پسند ها ({{post.vote_count}})
     </a>
 </div><br>
 <!--    comment form :   -->
 <div class="bg-light">
-    <h5> share your comment </h5>
+    <h5> دیدگاه خود را بنویسید </h5>
     <form action="" method="post">
         {% csrf_token %}
         {{comment_form|crispy}}
-        <button class="btn btn-primary" style="width: 100%">post</button>
+        <button class="btn btn-primary" style="width: 100%">پست</button>
     </form>
 </div>
 {% else %}
 <div class="bg-info p-4 " style="border-radius: 10px;">
-    <h3 class="text-white">INFO</h3>
+    <h3 class="text-white">!</h3>
     <p class="text-muted">
-    if you want to share your comment
-    or like this post and add it to your
-    favorite posts you must log in !</p>
+    برای اینکه بتونی دیدگاهتو بنویسی باید وارد سایت بشی!</p>
 </div>
 {% endif %}
 {% endblock side%}

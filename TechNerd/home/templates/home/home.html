@@ -3,7 +3,7 @@
 
 <!-- this is content section -->
 {% block content %}
-    <h5>home - last posts</h5>
+    <h5>اخرین پست ها</h5>
     {% for post in posts %}
         {% include 'includes/post_card.html' with value=post %}
     {% endfor %}
