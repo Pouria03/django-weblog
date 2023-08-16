@@ -5,7 +5,7 @@
         {% endif %}
         <small class="text-muted">{{value.created_date}}</small>
         <a href="{% url 'post:detail' post.slug %}"><h5 class="card-title">{{value.title}}</h5></a>
-        <p class="card-text">
+        <p class="card-text text-muted">
             {{value.description}}
         </p>
 <!--        <a class="btn btn-primary" href="{% url 'post:detail' post.slug %}">read more</a>-->

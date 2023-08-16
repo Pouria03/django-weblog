@@ -7,7 +7,7 @@
 {% block content %}
 
 <!-- post main body -->
-<div class="m-3 p-3">
+<div class="m-3 p-3" style="min-height: 100vh;">
     <div class="p-2">
         <h2 style="display: inline">{{post.title}} </h2>
         <small class="text-muted">{{post.created_date|timesince}} ago </small>
@@ -18,6 +18,7 @@
 
         <p class="">{{post.body|safe}}</p>
     </div>
+</div>
     <hr>
     <!--   tags and keywords  -->
     <span class=" p-2 bg-light" style="display: inline">
@@ -41,7 +42,6 @@
         </div>
         {% endfor %}
     </div>
-</div>
 
 {% endblock %}
 
@@ -57,7 +57,7 @@
     </a>
 </div><br>
 <!--    comment form :   -->
-<div class=" bg-light">
+<div class="bg-light">
     <h5> share your comment </h5>
     <form action="" method="post">
         {% csrf_token %}
@@ -66,10 +66,12 @@
     </form>
 </div>
 {% else %}
-<div class="bg-warning p-1">
+<div class="bg-info p-4 " style="border-radius: 10px;">
+    <h3 class="text-white">INFO</h3>
+    <p class="text-muted">
     if you want to share your comment
     or like this post and add it to your
-    favorite posts you must log in !
+    favorite posts you must log in !</p>
 </div>
 {% endif %}
 {% endblock side%}

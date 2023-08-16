@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@200;300;400;500;700&display=swap');
 *{
-    font-family:Verdana;
+    font-family: 'Poppins',sans-serif;
 }
-body.style {
+
+body.style{
     background-color: #F5F5F5;
 }
 
@@ -9,6 +11,7 @@ body.style {
 div.container {
     background-color: #FFFFFF;
     padding: 10px;
+    min-height:100vh;
 }
 
 /* where the posts are sorted */
@@ -22,7 +25,10 @@ h3.technerd {
     margin: 0 auto;
     text-align: center;
     color: #6E85B7;
+    transform: scale(.5);
+    animation: pop 1.5s forwards;
 }
+
 
 /* navbar of website */
 nav {
@@ -34,10 +40,7 @@ div.card-header {
     background-color: #B2C8DF;
 }
 div.card-body{
-    background-color: #F1FAFE;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #6E85B7;
+    border : none;
 }
 h5{
     padding-top: 15px;
@@ -52,4 +55,34 @@ div.footer{
 img{
     width: 200px;
     height: 200px;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+/* post detail */
+.detail-side-msg{
+    padding: 10px !important;
+}
+
+/* responsive */
+@media(max-width:650px){
+    *{
+        font-size: 28px;
+    }
+}
+
+
+/* animations */
+@keyframes pop{
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

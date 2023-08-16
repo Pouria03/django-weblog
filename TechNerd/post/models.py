@@ -22,7 +22,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d/',default=None,blank=True)
     category = models.ForeignKey(Category,on_delete=models.DO_NOTHING,related_name='category_posts')
     # tags should divide by comma ','
-    tags = models.CharField(max_length=100,verbose_name='tags (tags must divide by comma)')
+    tags = models.CharField(max_length=100,verbose_name='tags (tags must be divided by comma)')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
@@ -35,7 +35,7 @@ class Post(models.Model):
     def __str__(self):
         return self.slug
 
-            
+
 # End =======================================================================================================
 
 # this is for Votes :
