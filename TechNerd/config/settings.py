@@ -77,7 +77,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-    
+
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -118,6 +118,8 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+
+SECRET_KEY = 'django-fljfkj'
 
 # storage :
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
