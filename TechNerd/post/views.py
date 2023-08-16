@@ -19,7 +19,7 @@ class PostListView(View):
             posts = posts.filter(title__contains=request.GET['search']) or \
                     posts.filter(body__contains=request.GET['search'])
         # pagination
-        paginator = Paginator(posts, 6)
+        paginator = Paginator(posts, 1)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         # End # pagination
